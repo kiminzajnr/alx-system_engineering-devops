@@ -1,6 +1,16 @@
-The script in file 0-iam_betty changes your user ID to betty
-The script in file 1-who_am_i prints effective userid of the current user
-The script in file 2-groups prints all the groups the user is part of
-4-Empty contains script to create an empty file hello
-5-execute add execute permission to the owner of the file
-6-6-multiple_permissions adds execute permissions to the file
+The script in file 0-iam_betty changes your user ID to betty,
+The script in file 1-who_am_i prints effective userid of the current user,
+The script in file 2-groups prints all the groups the user is part of,
+4-Empty contains script to create an empty file hello,
+5-execute add execute permission to the owner of the file,
+6-6-multiple_permissions adds execute permissions to the file,
+7. To add execution permission to the owner, group owner and the other user,
+8. To set the permission to the file hello,
+9. Set the mode of the file hello, 
+10. Set the mode of the file hello to same as olleh's mode,
+11. Add execute permissions to all subdirectories of the current directory for the owner, group owner and all other users,
+12. create directory with permissions 751,
+13. Change owner to holberton for file hello,
+14. Change owner to betty and group owner to holberton for all the files and directories in the working directory,
+15. Change owner and group owner of the file _hello to betty and holberton,
+16. Change owner of the file hello to betty only if it is owned by the user guillaume
