@@ -1,0 +1,1 @@
+shell variables and redirections
