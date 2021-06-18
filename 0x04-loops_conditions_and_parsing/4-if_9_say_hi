@@ -2,10 +2,10 @@
 # Displays Hi on the 9th line
 string_a='Holberton School'
 counter=0
-while [ $counter -lt 9 ]; do
+while [ $counter -lt 10 ]; do
 	echo "$string_a"
 	(( counter+=1 ))
-	if [ $counter -eq 8 ]; then
+	if [ $counter -eq 9 ]; then
 		echo "Hi"
 	fi
 done
