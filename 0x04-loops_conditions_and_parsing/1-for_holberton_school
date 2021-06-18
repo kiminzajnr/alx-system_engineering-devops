@@ -2,6 +2,4 @@
 # This script is displaying "Holberton School" 10 times
 string_a='Holberton School'
 # shellcheck disable=SC2034 # unused variable left to hold count values
-for i in {1..10}; do
-	echo "$string_a"
-done
+for i in {1..10}; do echo "$string_a"; done
