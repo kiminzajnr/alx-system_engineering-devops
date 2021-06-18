@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Displays 'Holberton School 10 times using until
+string_a='Holberton School'
+counter=10
+until [ $counter -lt 1 ]; do echo "$string_a"; (( counter-=1 )); done
