@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# prints 'holberton school' 10 times using while loop
+string_a='Holberton School'
+counter=0
+while [ $counter -lt 10 ]; do echo "$string_a"; (( counter+=1 )); done
