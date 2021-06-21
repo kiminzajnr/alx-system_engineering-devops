@@ -2,6 +2,6 @@
 # Displays To infinity and beyond indefinitely
 counter=1
 while [ $counter -eq 1 ]; do
-	sleep 1
 	echo "To infinity and beyond"
+	sleep 2
 done
