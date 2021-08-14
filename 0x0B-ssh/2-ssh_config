@@ -1,0 +1,2 @@
+ssh -i ~/.ssh/holberton
+PasswordAuthentication no
