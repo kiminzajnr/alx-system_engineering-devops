@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Configuring web-02 to be identical to web-01
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+echo Holberton School > /var/www/html/index.nginx-debian.html
+echo Ceci n\'est pas une page > /var/www/html/custom_404.html
+
+# Configuring redirection
+sudo sed -i '/^\sserver_name.*/a \        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# Custom error page
+sudo sed -i '/^\slocation.*/i \        error_page 404 /custom_404.html;' /etc/nginx/sites-available/default
+
+# Configuring response header
+sudo sed -i '/^\slocation.*/i \        add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
+
+# Running the server
+sudo service nginx start
