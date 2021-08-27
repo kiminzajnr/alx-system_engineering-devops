@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# displays information about subdomains
+display_dns_infor() {
+
+	dig $2.$1 | awk 'c&&!--c;/;; ANSWER SECTION:/{c=1}' | awk -v subdomain=$2 '{print "The subdomain " subdomain " is a " $4 " record and points to " $5 }'
+	return 0
+}
+subdomains=("www" "lb-01" "web-01" "web-02")
+
+for subdomain in "${subdomains[@]}"
+do
+	if [ -z "$2" ] || [ "$2" == "$subdomain" ] ;
+	then
+		display_dns_infor "$1" "$subdomain"
+	fi
+done
