@@ -61,5 +61,5 @@ listen load
 	option forwardfor
 	server 178-web-01 34.138.195.126 check
 	server 178-web-02 35.185.8.133 check
-	" >> /etc/haproxy/haproxy.cfg
+	" > /etc/haproxy/haproxy.cfg
 service haproxy start
