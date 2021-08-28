@@ -4,9 +4,8 @@
 # Distribute requests using a roundrobin algorithm
 # HAproxy can be managed via an init script
 
-sudo add-apt-repository ppa:vbernat/haproxy-1.8
-sudo apt-get update
-sudo apt-get install haproxy
+sudo apt-get -y update
+sudo apt-get -y install haproxy
 
 # Delete the default haproxy configuration file and create another one
 sudo rm /etc/haproxy/haproxy.cfg
@@ -59,7 +58,7 @@ listen load
 	stats uri /haproxy?stats
 	balance roundrobin
 	option forwardfor
-	server 178-web-01 34.138.195.126 check
-	server 178-web-02 35.185.8.133 check
+	server 178-web-01 34.204.205.27 check
+	server 178-web-02 35.196.230.32 check
 	" > /etc/haproxy/haproxy.cfg
-service haproxy start
+sudo service haproxy start
