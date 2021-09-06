@@ -5,5 +5,6 @@ sudo ufw default allow outgoing
 sudo ufw allow 22
 sudo ufw allow 80
 sudo ufw allow 443
+sudo ufw show added
 sudo ufw app list
 sudo ufw enable
