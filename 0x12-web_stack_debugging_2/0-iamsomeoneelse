@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # accept one argument
 # runs the whoami command under the user passed as an argument
-sudo runuser -l "$1" -c 'whoami'
+sudo -u "$1" 'whoami'
