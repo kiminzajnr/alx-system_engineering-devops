@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# run nginx s nginx user
+# nginx must be listening on all active IPS on port 8080
+# you cannot use apt-get remove
+# this script configures the container to fit the above requirements
+
+file='/etc/nginx/sites-available/default'
+
+# kill apache2 server
+pkill -f apache2
+
+chmod 777 /etc/nginx/nginx.conf
+
+# update listening ports
+sed -i 's/80/8080/g' $file
+
+# restart nginx as nginx
+sudo -u nginx service nginx restart
