@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
-# install and configure HAproxy on lb-01 server
-# HAproxy version 1.5 or greter so that it send traffic to web-01 and web-02
-# Distribute requests using a roundrobin algorithm
-# HAproxy can be managed via an init script
+# Install and configure HAProxy load balancer
 
 sudo apt-get -y update
 sudo apt-get install -y haproxy
 
-# enabling starting haproxy by init script by appending this line
+# Enable load balancer
 sudo sed -i "8 a\ENABLED=1\n" /etc/default/haproxy
 
+# Config load balancer with web servers
 sudo sed -i "$ a\ \nfrontend load_balancer\n\tbind\t0.0.0.0:80\n\tmode\thttp\n\tdefault_backend\tweb_servers\n\nbackend web_servers\n\tbalance\troundrobin\n\tserver\t178-web-01\t34.204.205.27:80\n\tserver\t178-web-02\t35.196.230.32:80" /etc/haproxy/haproxy.cfg
-
 
 sudo service haproxy start
