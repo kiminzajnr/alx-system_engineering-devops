@@ -12,54 +12,9 @@ sudo rm /etc/haproxy/haproxy.cfg
 touch /etc/haproxy/haproxy.cfg
 
 # enabling starting haproxy by init script by appending this line
-echo "ENABLED=1" >> /etc/default/haproxy
+sudo sed -i "8 a\ENABLED=1\n" /etc/default/haproxy
 
-echo "
-global
-	log /dev/log	local0
-	log /dev/log	local1 notice
-	chroot /var/lib/haproxy
-	stats socket /run/haproxy/admin.sock mode 660 level admin
-	stats timeout 30s
-	user haproxy
-	group haproxy
-	daemon
+sudo sed -i "$ a\ \nfrontend load_balancer\n\tbind\t0.0.0.0:80\n\tmode\thttp\n\tdefault_backend\tweb_servers\n\nbackend web_servers\n\tbalance\troundrobin\n\tserver\t1115-web-01\t34.73.76.135:80\n\tserver\t1115-web-02\t18.209.20.255:80" /etc/haproxy/haproxy.cfg
 
-	# Default SSL material locations
-	ca-base /etc/ssl/certs
-	crt-base /etc/ssl/private
-
-	# Default ciphers to use on SSL-enabled listening sockets.
-	# For more information, see ciphers(1SSL). This list is from:
-	#  https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
-	ssl-default-bind-ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS
-	ssl-default-bind-options no-sslv3
-
-defaults
-	log	global
-	mode	http
-	option	httplog
-	option	dontlognull
-        timeout connect 5000
-        timeout client  50000
-        timeout server  50000
-	errorfile 400 /etc/haproxy/errors/400.http
-	errorfile 403 /etc/haproxy/errors/403.http
-	errorfile 408 /etc/haproxy/errors/408.http
-	errorfile 500 /etc/haproxy/errors/500.http
-	errorfile 502 /etc/haproxy/errors/502.http
-	errorfile 503 /etc/haproxy/errors/503.http
-	errorfile 504 /etc/haproxy/errors/504.http
-   
-listen load
-	balance roundrobin
-	bind 0.0.0:80
-	mode http
-	stats enable
-	stats uri /haproxy?stats
-	option forwardfor
-	server 178-web-01 34.204.205.27 check
-	server 178-web-02 35.196.230.32 check
-	" > /etc/haproxy/haproxy.cfg
 
 sudo service haproxy start
