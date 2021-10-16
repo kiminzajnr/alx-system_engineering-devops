@@ -5,16 +5,12 @@
 # HAproxy can be managed via an init script
 
 sudo apt-get -y update
-sudo apt-get -y install haproxy
-
-# Delete the default haproxy configuration file and create another one
-sudo rm /etc/haproxy/haproxy.cfg
-touch /etc/haproxy/haproxy.cfg
+sudo apt-get install -y haproxy
 
 # enabling starting haproxy by init script by appending this line
 sudo sed -i "8 a\ENABLED=1\n" /etc/default/haproxy
 
-sudo sed -i "$ a\ \nfrontend load_balancer\n\tbind\t0.0.0.0:80\n\tmode\thttp\n\tdefault_backend\tweb_servers\n\nbackend web_servers\n\tbalance\troundrobin\n\tserver\t1115-web-01\t34.73.76.135:80\n\tserver\t1115-web-02\t18.209.20.255:80" /etc/haproxy/haproxy.cfg
+sudo sed -i "$ a\ \nfrontend load_balancer\n\tbind\t0.0.0.0:80\n\tmode\thttp\n\tdefault_backend\tweb_servers\n\nbackend web_servers\n\tbalance\troundrobin\n\tserver\t178-web-01\t34.204.205.27:80\n\tserver\t178-web-02\t35.196.230.32:80" /etc/haproxy/haproxy.cfg
 
 
 sudo service haproxy start
