@@ -53,3 +53,14 @@ server {
 `sudo rm /etc/nginx/sites-enabled/default`
 5. test for any errors using `sudo nginx -t`
 6. reload nginx service `sudo systemctl reload nginx.service`
+
+### Block traffic to web-01 and web-02 except from the lb
+`sudo ufw enable`  
+`sudo ufw allow 22`  
+`sudo ufw allow from 18.208.119.185 to any port 80`  
+`sudo ufw default deny incoming`  
+`sudo ufw reload`  
+
+### Secure nginx with letsencrypt with certbot
+- https://github.com/antonputra/tutorials/tree/main/lessons/078
+- https://www.youtube.com/watch?v=R5d-hN9UtpU
